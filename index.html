@@ -13,6 +13,9 @@
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
+        <button id="blogToggle" class="nav-button" type="button" aria-expanded="false" aria-controls="blog">
+          Blog
+        </button>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -43,6 +46,19 @@
           <p>A short description of another project.</p>
         </article>
       </div>
+    </section>
+
+    <section id="blog" class="section blog-section" hidden>
+      <div class="section-heading">
+        <div>
+          <h2>Blog</h2>
+          <p>Notes, short explanations, and posts.</p>
+        </div>
+        <button id="closeBlogButton" class="secondary-button" type="button">Close</button>
+      </div>
+
+      <div id="blogStatus" class="blog-status">Loading posts...</div>
+      <div id="blogList" class="blog-list" aria-live="polite"></div>
     </section>
 
     <section id="contact" class="section">
