@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+        processEnvironments: true
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <h1>My Site</h1>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#blog">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="post-page">
+    <article class="latex-post">
+      <p id="postStatus" class="blog-status">Loading post...</p>
+      <h1 id="postTitle"></h1>
+      <p id="postDate" class="blog-meta"></p>
+      <div id="postContent"></div>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Erel Zack</p>
+  </footer>
+
+  <script src="post.js"></script>
+</body>
+</html>

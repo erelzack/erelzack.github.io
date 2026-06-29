@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\title{Sample Blog Post}
+\date{2026-06-29}
+
+\begin{document}
+\maketitle
+
+\section{Why this works}
+
+This post is written as a simple \LaTeX{} file.
+The website loads the file and converts common \LaTeX{} structure into HTML.
+Mathematics is left in \LaTeX{} form and rendered by MathJax.
+
+\section{A small equation}
+
+For example, inline math like \(E = mc^2\) works, and display math works too:
+
+\[
+    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\]
+
+Standard equation environments also work:
+
+\begin{equation}
+    \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}
+\end{equation}
+
+\section{Lists}
+
+\begin{itemize}
+    \item Write a post as a `.tex` file
+    \item Add it to `blog/posts.json`
+    \item Open it through the generated blog reader
+\end{itemize}
+
+\end{document}

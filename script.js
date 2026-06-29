@@ -10,10 +10,12 @@ let blogPostsLoaded = false;
 
 const fallbackPosts = [
   {
+    slug: "sample-post",
     title: "Sample Blog Post",
     date: "2026-06-29",
-    description: "A first example post. Later this can point to a page generated from LaTeX.",
-    url: "blog/posts/sample-post.html",
+    description: "A first example post generated from a LaTeX file.",
+    file: "blog/posts/sample-post.tex",
+    url: "blog/post.html?post=sample-post",
   },
 ];
 
@@ -90,7 +92,7 @@ function renderBlogPosts(posts) {
     const postDescription = document.createElement("p");
 
     postLink.className = "blog-post";
-    postLink.href = post.url;
+    postLink.href = post.url || `blog/post.html?post=${encodeURIComponent(post.slug)}`;
 
     postTitle.textContent = post.title;
     postDate.className = "blog-meta";

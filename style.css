@@ -170,6 +170,59 @@ button:hover {
   margin: 0;
 }
 
+.post-page {
+  max-width: 820px;
+}
+
+.latex-post {
+  padding: 32px 0 56px;
+}
+
+.latex-post h1 {
+  margin: 0 0 8px;
+  font-size: 42px;
+  line-height: 1.15;
+}
+
+.latex-post h2 {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+  font-size: 28px;
+}
+
+.latex-post h3 {
+  margin-top: 28px;
+  font-size: 22px;
+}
+
+.latex-post p,
+.latex-post li {
+  font-size: 18px;
+}
+
+.latex-post a {
+  color: #2563eb;
+}
+
+.latex-post blockquote {
+  margin: 24px 0;
+  padding: 12px 20px;
+  color: #4b5563;
+  background: white;
+  border-left: 4px solid #2563eb;
+}
+
+.latex-post .math-block {
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.latex-post ul,
+.latex-post ol {
+  padding-left: 28px;
+}
+
 footer {
   padding: 24px;
   text-align: center;
@@ -183,6 +236,10 @@ footer {
   }
 
   .hero h2 {
+    font-size: 32px;
+  }
+
+  .latex-post h1 {
     font-size: 32px;
   }
 

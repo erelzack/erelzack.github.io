@@ -1,8 +1,10 @@
 [
   {
+    "slug": "sample-post",
     "title": "Sample Blog Post",
     "date": "2026-06-29",
-    "description": "A first example post. Later this can point to a page generated from LaTeX.",
-    "url": "blog/posts/sample-post.html"
+    "description": "A first example post generated from a LaTeX file.",
+    "file": "posts/sample-post.tex",
+    "url": "blog/post.html?post=sample-post"
   }
 ]
