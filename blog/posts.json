@@ -6,5 +6,13 @@
     "description": "A first example post generated from a LaTeX file.",
     "file": "posts/sample-post.tex",
     "url": "blog/post.html?post=sample-post"
+  },
+  {
+    "slug": "second-post",
+    "title": "Test Blog Post",
+    "date": "2026-06-29",
+    "description": "A 2nd try",
+    "file": "posts/second-post.tex",
+    "url": "blog/post.html?post=second-post"
   }
 ]

@@ -1,0 +1,443 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{siunitx}
+\usepackage{esint}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{tikz-feynman}
+\usepackage{float}
+
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\half}{\frac{1}{2}}
+\DeclareSIUnit{\b}{b}
+\DeclareSIUnit{\pb}{pb}
+
+\usepackage{geometry}
+ \geometry{
+ total={170mm,257mm},
+ left=16mm,
+ top=24mm,
+ bottom=30mm,
+ top=15mm
+ }
+
+\title{Intro to Particles \\ HW 3}
+\author{Erel Zack \\ erel.zack@campus.technion.ac.il \and Benjamin Leshansky
+ \\ benjaminl@campus.technion.ac.il}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Symmetry to Rotations}
+
+\subsection{}
+
+\begin{equation}
+\begin{split}
+    [L_i,L_j] &= 
+    [\varepsilon_{imn}x_m p_n,\, \varepsilon_{jkl}x_k p_l] =
+    \varepsilon_{imn}\varepsilon_{jkl}[x_mp_n, x_kp_l]=\\
+    &=
+    \varepsilon_{imn}\varepsilon_{jkl} (x_m[p_n,x_kp_l] + [x_m,x_kp_l]p_n)=
+    \varepsilon_{imn}\varepsilon_{jkl}(x_m[p_n,x_k]p_l + x_k[x_m,p_l]p_n)=\\
+    &= 
+    i\varepsilon_{imn}\varepsilon_{jkl}(-\delta_{nk}x_m p_l + \delta_{lm}x_k p_n) = 
+    -i\varepsilon_{imk}\varepsilon_{jkl}x_mp_l + i\varepsilon_{imn}\varepsilon_{jkm}x_kp_n=\\
+    &=
+    i\varepsilon_{imk}\varepsilon_{jlk}x_m p_l - i\varepsilon_{inm}\varepsilon_{jkm}x_k p_n =
+    i(\delta_{ij}\delta_{ml}-\delta_{il}\delta_{mj})x_m p_l - i(\delta_{ij}\delta_{nk}-\delta_{ik}\delta_{nj})x_k p_n =\\
+    &=
+    i\delta_{ij}x_m p_m - i x_j p_i - i\delta_{ij} x_n p_n + i x_i p_j =
+    i\delta_{ij}(\vec x\cdot\vec p) + i(x_ip_j-x_jp_i) - i\delta_{ij}(\vec x\cdot\vec p) =\\
+    &=
+    i(x_i p_j-x_j p_i)=
+    i\varepsilon_{ijk}L_k
+\end{split}
+\end{equation}
+
+\subsection{}
+The rotational transformation is $g(\theta , \phi , \psi ) = R_1 (\theta) R_2(\phi)R_3(\psi)$, thus we can use write explicitly the inf. repr. here: $$$$ 
+
+\begin{equation}
+\begin{split}
+        &g(\theta, \phi, \psi ) = \left(I+\begin{pmatrix} 0&0&0 \\ 0 & 0 & -\theta \\ 0&\theta&0 \end{pmatrix} \right)\left(I+\begin{pmatrix} 0&0&-\phi \\ 0 & 0 &0 \\ \phi&0&0 \end{pmatrix} \right)\left(I+\begin{pmatrix} 0&-\psi&0 \\ \psi & 0 & 0 \\ 0&0&0 \end{pmatrix} \right) + \mathcal{O}(\theta^2,\phi^2,\psi^2) \\ & = 
+        I + \begin{pmatrix} 0&0&0 \\ 0 & 0 & -\theta \\ 0&\theta&0 \end{pmatrix} + \begin{pmatrix} 0&0&-\phi \\ 0 & 0 &0 \\ \phi&0&0 \end{pmatrix} + \begin{pmatrix} 0&-\psi&0 \\ \psi & 0 & 0 \\ 0&0&0 \end{pmatrix} + \mathcal{O}(\theta^2,\phi^2,\psi^2)
+\end{split}
+\end{equation}
+
+This is the inf. representation of the rotation group
+
+
+\subsection{}
+
+Approximating for infinitesimal rotations:
+\begin{equation}
+    e^{-i\vec \alpha\cdot \vec L} \simeq 
+    I - i\vec \alpha\cdot\vec L =
+    I-i\theta L_x -i\varphi L_y - i\psi L_z
+\end{equation}
+Comparing to the transformation, we equate the coefficients for the euler angles:
+\begin{equation}
+    L_x = i
+    \begin{pmatrix}
+        0&0&0\\
+        0&0&-\theta\\
+        0&\theta&0
+    \end{pmatrix}
+    ,\quad
+    L_y = i
+    \begin{pmatrix}
+        0&0&\phi\\
+        0&0&0\\
+        \phi&0&0
+    \end{pmatrix}
+    ,\quad
+    L_z = i
+    \begin{pmatrix}
+        0&-\psi&0\\
+        \psi&0&0\\
+        0&0&0
+    \end{pmatrix}
+\end{equation}
+
+
+\section{Constructing Dirac Lagrangian}
+\subsection{}
+Using the hint:
+\begin{equation}
+\begin{split}
+    [\mathcal S] &= \left[\int\mathcal L\,d^4x \right]\\
+    1 &= [\mathcal L]\cdot [x]^4\\
+    1 &= [\mathcal L]\cdot M^{-4}\\
+    \Rightarrow [\mathcal L] &= M^4
+\end{split}
+\end{equation}
+
+\subsection{}
+Using our previous result for $\mathcal L$:
+\begin{equation}
+\begin{split}
+    [\mathcal L] &= \left[\half \partial_\mu\phi\partial^\mu\phi \right]\\
+    M^4 &= [\partial_\mu]^2[\phi]^2\\
+    M^4 &= \frac{[\phi]^2}{[x]^2}\\
+    M^4 &= [\phi]^2 M^2\\
+    [\phi]^2 &= M^2\\
+    [\phi] &= M
+\end{split}
+\end{equation}
+
+\subsection{}
+
+\begin{equation}
+    \begin{split}
+        S^{0i}=\frac{i}{4}[\gamma^0,\gamma^i] = 
+        \frac{i}{4}(-\{ \gamma^0,\gamma^i\} +2\gamma^0\gamma^i)=
+        \frac{i}{4}(-2g^{0i} + 2\gamma^0\gamma^i)=
+        \frac{i}{2}\gamma^0\gamma^i
+    \end{split}
+\end{equation}
+
+Note that by its definition:
+\begin{equation}
+\begin{split}
+    \gamma^i&=\beta a^i\\
+    \Rightarrow \beta \gamma^i &= \beta^2 a^i = a^i\\
+    \Rightarrow \gamma^0\gamma^i &= a^i
+\end{split}
+\end{equation}
+
+Which gives us:
+\begin{equation}
+    S^{0i} = \frac{i}{2}a^i =
+    \frac{i}{2}
+    \begin{pmatrix}
+        0&\sigma^i\\
+        \sigma^i & 0
+    \end{pmatrix}
+\end{equation}
+
+Now: $$S^{ij} = \frac{i}{4}[\gamma^i,\gamma^j] = \frac{i}{4}(\{\gamma^i,\gamma^j\} - 2\gamma^j\gamma^i) = \frac{i}{2}(g^{ij}-\gamma^j\gamma^i) = -\frac{i}{2}(I+\gamma^j\gamma^i)$$
+
+
+\subsection{}
+We now develop in TAYLOR and take the first order:
+\begin{equation}
+    \psi\rightarrow\psi ' = \Lambda_{\half} \psi = \left(I - \frac{i}{2}\omega_{\mu\nu}S^{\mu\nu}\right)\psi
+\end{equation}
+
+\noindent
+And for $\bar\psi$:
+$$\bar\psi=\psi^\dagger \gamma^0 \to (\Lambda \psi)^\dagger \gamma^0 = \psi^\dagger \Lambda^\dagger \gamma^0=(\psi^\dagger \gamma^0)\gamma^0\Lambda^\dagger \gamma^0 = \bar\psi\gamma^0\Lambda^\dagger\gamma^0$$
+
+$$\gamma^0S^{\mu \nu}\gamma^0 = \frac{i}{4}(\gamma^0 \gamma^\mu \gamma^\nu \gamma^0 - \gamma^0 \gamma^\nu \gamma^\mu \gamma^0)$$
+
+Calculating separately for the $0i$ and $ij$ cases:
+$$\gamma^0S^{0i}\gamma^0 = \frac{i}{4}(\gamma^0 \gamma^0 \gamma^i \gamma^0 - \gamma^0 \gamma^i \gamma^0 \gamma^0) = \frac{i}{4}(\gamma^i\gamma^0-\gamma^0\gamma^i)=\frac{i}{4}[\gamma^i,\gamma^0]= -S^{0i}$$
+
+As we've shown before:
+\begin{equation}
+\begin{split}
+    &S^{0i}=\frac{i}{4}[\gamma^0,\gamma^i]= \frac{i}{2}\gamma^0\gamma^i\\
+    \Rightarrow &[\gamma^0,\gamma^i]=2\gamma^0\gamma^i\\
+    &\gamma^0\gamma^i-\gamma^i\gamma^0 = 2\gamma^0\gamma^i\\
+    &\gamma^0\gamma^i = -\gamma^i\gamma^0
+\end{split}
+\end{equation}
+
+And therefore:
+\begin{equation}
+\begin{split}
+    \gamma^0 S^{ij}\gamma^0 = 
+    -\frac{i}{2}\gamma^0(I+\gamma^j\gamma^i)\gamma^0=
+    -\frac{i}{2}(I+\gamma^0\gamma^j\gamma^i\gamma^0)=
+    -\frac{i}{2}(I+(-\gamma^j\gamma^0)(-\gamma^0\gamma^i))=
+    S^{ij}
+\end{split}
+\end{equation}
+
+This gives us:
+\begin{equation}
+\begin{split}
+    &\gamma^0\Lambda^\dagger\gamma^0 = \gamma^0\left(I-\frac{i}{2}\omega_{\mu\nu}S^{\mu\nu} \right)\gamma^0 = 
+    I-\frac{i}{2}\omega_{\mu\nu}\gamma^0 S^{\mu\nu}\gamma^0 =\\
+    &=I-\frac{i}{2}\left(-\omega_{0i}S^{0i} + \omega_{ij}S^{ij}  \right) = I - \frac{i}{2}( - \omega_{\mu\nu}S^{\mu\nu})=I+ \frac{i}{2}\omega_{\mu\nu}S^{\mu\nu}
+\end{split}
+\end{equation}
+Now: 
+\begin{equation}
+    \bar\psi\psi\to \bar\psi\left(I+\frac{i}{2}\omega_{\mu\nu}S^{\mu\nu} \right)\left(I-\frac{i}{2}\omega_{\mu\nu}S^{\mu\nu} \right)\psi = 
+    \bar\psi\left( I + \left(\frac{1}{2}\omega_{\mu\nu}S^{\mu\nu} \right)^2\right)\psi = \bar\psi\psi + \mathcal O(\omega_{\mu\nu}^2)
+\end{equation}
+
+Meanwhile:
+$$\psi^\dagger\psi\to (\Lambda\psi)^\dagger(\Lambda\psi)=\psi^\dagger\Lambda^\dagger\Lambda\psi  $$
+But 
+$$\Lambda^\dagger=(1-\frac{i}{2}\omega_{\mu\nu} S^{\mu\nu})^\dagger=1+\frac{i}{2}\omega_{\mu\nu}(S^{\mu\nu})^\dagger =1 + \frac{i}{2}(\omega_{ij}S^{ij}-\omega_{0i}S^{0i})$$
+
+Where we used:
+\begin{equation}
+\begin{split}
+    &(S^{\mu\nu})^\dagger = 
+    -\frac{i}{4}[\gamma^\mu,\gamma^\nu]^\dagger=
+    -\frac{i}{4}[\gamma^{\nu\dagger},\gamma^{\mu\dagger}]=
+    \frac{i}{4}[\gamma^{\mu\dagger},\gamma^{\nu\dagger}]\\
+    \Rightarrow & (S^{ij})^\dagger = 
+    \frac{i}{4}[\gamma^{i\dagger},\gamma^{j\dagger}]=
+    \frac{i}{4}[-\gamma^i,-\gamma^j]=
+    \frac{i}{4}[\gamma^i,\gamma^j] = 
+    S^{ij}\\
+    \Rightarrow & (S^{0i})^\dagger = 
+    \frac{i}{4}[\gamma^{0\dagger},\gamma^{i\dagger}]=
+    \frac{i}{4}[\gamma^0,-\gamma^i]=
+    -S^{0i}
+\end{split}
+\end{equation}
+
+This gives us:
+\begin{equation}
+\begin{split}
+    \psi^\dagger\Lambda^\dagger\Lambda\psi &= 
+    \psi^\dagger \left( I + \frac{i}{2}(\omega_{ij}S^{ij}-\omega_{0i}S^{0i}) \right) \left(I - \frac{i}{2}(\omega_{ij}S^{ij} + \omega_{0i}S^{0i}) \right) \psi=\\
+    &=\psi^\dagger\left(I - i\omega_{0i}S^{0i} +\mathcal O(\omega_{\mu \nu}^2) \right)\psi  \neq \psi^\dagger\psi + \mathcal O(\omega^2)
+\end{split}
+\end{equation}
+
+\subsection{}
+We know that $[-m\bar\psi \psi]=[\mathcal L]=M^4$ therefore: $$ [\bar\psi \psi ] = M^3$$ thus \begin{equation}
+    \boxed{[\psi]=M^{3/2}}
+\end{equation}
+
+Therefore the kinetic term will be of the form:
+\begin{equation}
+\begin{split}
+    [\partial_\mu]^n[\psi]^2 &= [\mathcal L]\\
+    M^n\cdot M^3 &= M^4\\
+    M^n &= M\\
+    n&=1
+\end{split}
+\end{equation}
+
+\subsection{}
+
+Define $$\Lambda^\mu{}_\nu = e^{-\frac{i}{2}\omega_{\rho\sigma}(\mathcal J^{\rho\sigma})^\mu{}_\nu}$$
+
+\subsubsection{}
+
+\[
+S^{\rho\sigma}=\frac{i}{4}[\gamma^\rho,\gamma^\sigma]
+\]
+
+\[
+(\mathcal J^{\rho\sigma})^\mu{}_\nu\gamma^\nu
+=
+[\gamma^\mu,S^{\rho\sigma}]
+\]
+
+\[
+(\mathcal J^{\rho\sigma})^\mu{}_\nu
+=
+i g^{\mu\alpha}
+\left(
+\delta^\rho_\alpha\delta^\sigma_\nu
+-
+\delta^\sigma_\alpha\delta^\rho_\nu
+\right)
+\]
+
+\[
+(\mathcal J^{\rho\sigma})^\mu{}_\nu
+=
+i
+\left(
+g^{\mu\rho}\delta^\sigma_\nu
+-
+g^{\mu\sigma}\delta^\rho_\nu
+\right)
+\]
+
+\[
+(\mathcal J^{\rho\sigma})^\mu{}_\nu\gamma^\nu
+=
+i
+\left(
+g^{\mu\rho}\gamma^\sigma
+-
+g^{\mu\sigma}\gamma^\rho
+\right)
+\]
+
+\[
+[\gamma^\mu,S^{\rho\sigma}]
+=
+\frac{i}{4}
+[\gamma^\mu,[\gamma^\rho,\gamma^\sigma]]
+\]
+
+\[
+[\gamma^\rho,\gamma^\sigma]
+=
+\gamma^\rho\gamma^\sigma-\gamma^\sigma\gamma^\rho
+\]
+\[
+[\gamma^\mu,S^{\rho\sigma}]
+=
+\frac{i}{4}
+\left(
+[\gamma^\mu,\gamma^\rho\gamma^\sigma]
+-
+[\gamma^\mu,\gamma^\sigma\gamma^\rho]
+\right)
+\]
+\[
+\{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}
+\]
+\[
+[\gamma^\mu,\gamma^\rho\gamma^\sigma]
+= (2g^{\mu\rho}-\gamma^\rho\gamma^\mu)\gamma^\sigma - \gamma^\rho \gamma^\sigma \gamma^\mu = 2g^{\mu\rho}\gamma^\sigma
+-
+\gamma^\rho(\gamma^\sigma\gamma^\mu+\gamma^\mu\gamma^\sigma) = 
+2g^{\mu\rho}\gamma^\sigma
+-
+\gamma^\rho2g^{\mu\sigma}
+\]
+\[
+[\gamma^\mu,\gamma^\sigma\gamma^\rho]
+=
+2g^{\mu\sigma}\gamma^\rho
+-
+2g^{\mu\rho}\gamma^\sigma
+\]
+
+\[
+[\gamma^\mu,S^{\rho\sigma}]
+=
+\frac{i}{4}
+\left(
+2g^{\mu\rho}\gamma^\sigma
+-
+2g^{\mu\sigma}\gamma^\rho
+-
+2g^{\mu\sigma}\gamma^\rho
++
+2g^{\mu\rho}\gamma^\sigma
+\right)
+\]
+
+\[
+[\gamma^\mu,S^{\rho\sigma}]
+=
+\frac{i}{4}
+\left(
+4g^{\mu\rho}\gamma^\sigma
+-
+4g^{\mu\sigma}\gamma^\rho
+\right)
+\]
+
+\[
+[\gamma^\mu,S^{\rho\sigma}]
+=
+i
+\left(
+g^{\mu\rho}\gamma^\sigma
+-
+g^{\mu\sigma}\gamma^\rho
+\right)
+\]
+
+\[
+(\mathcal J^{\rho\sigma})^\mu{}_\nu\gamma^\nu
+\]
+
+\[
+(\mathcal J^{\rho\sigma})^\mu{}_\nu\gamma^\nu
+=
+[\gamma^\mu,S^{\rho\sigma}]
+\]
+
+
+\subsubsection{}
+Using the inf. expressions for $\Lambda_{1/2}$ at first order we have:
+\begin{equation}
+\begin{split}
+    &\Lambda^{-1}_{1/2} \gamma^\mu  \Lambda_{1/2} = \left(I+\frac{i}{2}\omega_{\rho\sigma}S^{\rho\sigma} \right)\gamma^\mu \left(I-\frac{i}{2}\omega_{\rho\sigma}S^{\rho\sigma} \right) \simeq \gamma^\mu + \frac{i}{2}\omega_{\rho\sigma}[S^{\rho\sigma},\gamma^\mu] \\ &= \gamma^\mu - \frac{i}{2}\omega_{\rho\sigma} (\mathcal J ^{\rho\sigma})^\mu_{\ \nu} \gamma^\nu = \left[\delta^\mu_{\ \nu} - \frac{i}{2}\omega_{\rho\sigma} (\mathcal J ^{\rho\sigma})^\mu_{\ \nu} \right]\gamma^\nu \simeq (e^{-\frac{i}{2}\omega_{\rho\sigma}J{\rho\sigma}})^\mu_{\ \nu}\gamma^\nu = \Lambda^\mu_{\ \nu}\gamma^\nu
+\end{split}
+\end{equation}
+
+
+\subsubsection{}
+We denote $\Lambda \equiv \Lambda_{1/2}$, because only $\psi$ and $\bar\psi$ are transformed as we saw in (4):
+\begin{equation}
+    \begin{split}
+        \bar \psi \gamma^\mu \psi \to (\bar\psi\Lambda^{-1}) \gamma^\mu (\Lambda\psi)=\bar\psi\Lambda^\mu_{\ \nu}\gamma^\mu \psi
+    \end{split}
+\end{equation}
+since the defined lorentz transform $\Lambda^\mu_{\ \nu}$ acts trivially on $\psi,\bar\psi$ we can pull it out: $$\bar \psi \gamma^\mu \psi \to \Lambda^\mu_{\ \nu}\bar\psi \gamma^\mu \psi$$
+
+\subsection{}
+$\bar\psi$ has the conjugate velocity $\partial_\mu \bar\psi$ which doesn't appear in the Lagrangian leaving us with the first equation:
+\begin{equation}
+\begin{split}
+    &\frac{\partial\lagr}{\partial\psi} - \partial_\mu\frac{\partial\lagr}{\partial(\partial_\mu\psi)} = 0\\
+    &-m\bar\psi - \partial_\mu\left(i\bar\psi\gamma^\nu\delta^\mu{}_{\nu} \right) = 0\\
+    &m\bar\psi + i\gamma^\nu\partial_\nu\bar\psi = 0
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    &\frac{\partial\lagr}{\partial\bar\psi} - \partial_\mu\frac{\partial\lagr}{\partial(\partial_\mu\bar\psi)}=0\\
+    & i\gamma^\nu\partial_\nu\psi - m\psi = 0
+\end{split}
+\end{equation}
+
+\begin{equation}
+    \boxed{\begin{cases} & m\bar\psi + i\gamma^\nu\partial_\nu\bar\psi = 0 \\ & i\gamma^\nu\partial_\nu\psi - m\psi = 0 
+    \end{cases}}
+\end{equation}
+
+
+
+
+\end{document}
