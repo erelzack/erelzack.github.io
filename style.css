@@ -35,21 +35,13 @@ nav h1 {
   gap: 16px;
 }
 
-.nav-links a,
-.nav-button {
+.nav-links a {
   color: white;
   text-decoration: none;
 }
 
-.nav-links a:hover,
-.nav-button:hover {
+.nav-links a:hover {
   text-decoration: underline;
-}
-
-.nav-button {
-  padding: 0;
-  background: transparent;
-  font: inherit;
 }
 
 main {
@@ -134,6 +126,10 @@ button:hover {
 
 .blog-section {
   scroll-margin-top: 24px;
+}
+
+.is-hidden {
+  display: none;
 }
 
 .blog-status {
